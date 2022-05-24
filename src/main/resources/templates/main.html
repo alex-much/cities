@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+
+</head>
+<body>
+    <div th:class="@{container-fluid}">
+        <form method="post">
+            <div th:class = "@{row}">
+                <div th:class = "@{col-md-4}">
+                    <label for="name" th:class="@{form-label text-info}">Название города</label>
+                    <input id = "name" th:class = "@{form-control}" type="text" name="name" placeholder="Введите название города">
+                </div>
+                <div th:class = "@{col-md-2}">
+                    <label for="latitude" th:class="@{form-label text-info}">Широта</label>
+                    <input id = "latitude" th:class = "@{form-control}" type="text" name="latitude" placeholder="Широта">
+                </div>
+                <div th:class = "@{col-md-2}">
+                    <label for="longitude" th:class="@{form-label text-info}">Долгота</label>
+                    <input id = "longitude" th:class = "@{form-control}" type="text" name="longitude" placeholder="Долгота">
+                </div>
+
+            </div>
+            <div th:class = "@{row}">
+                <div th:class = "@{col-md-2}">
+                    <button th:class = "@{btn btn-primary}" type="submit">Добавить</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div>Список городов</div>
+    <table th:class = "@{table table-striped}">
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">name</th>
+            <th scope="col">latitude</th>
+            <th scope="col">longitude</th>
+        </tr>
+        <tr th:each = "city: ${cities}">
+            <td th:scope="row" th:text="${city.id}"></td>
+            <td th:text="${city.name}"></td>
+            <td th:text="${city.latitude}"></td>
+            <td th:text="${city.longitude}"></td>
+        </tr>
+    </table>
+    <script th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
+    <script th:src="@{/webjars/popper.js/1.12.9-1/umd/popper.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js}"></script>
+</body>
+</html>

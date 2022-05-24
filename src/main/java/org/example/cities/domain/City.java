@@ -9,20 +9,25 @@ import javax.persistence.Id;
 public class City {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
     private String name;
     private Float latitude;
     private Float longitude;
 
-    public City() {
+    protected City() {
     }
 
+    public City(String name, Float latitude, Float longitude) {
+        this.name = name;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
