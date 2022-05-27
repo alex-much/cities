@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+</head>
+<body>
+<div th:class="@{container-fluid}">
+  <form method="post" action="/calc">
+    Расчет прямого расстояния между городами по формуле гаверсинусов
+    <div th:class = "@{row}">
+      <div th:class = "@{col-md-4}">
+        <label for="fromCity" th:class="@{form-label text-info}">Откуда</label>
+        <input id = "fromCity" th:class = "@{form-control}" type="text" name="fromCity" placeholder="Введите название города">
+      </div>
+      <div th:class = "@{col-md-4}">
+        <label for="toCity" th:class="@{form-label text-info}">Куда</label>
+        <input id = "toCity" th:class = "@{form-control}" type="text" name="toCity">
+      </div>
+    </div>
+    <br>
+    <div th:class = "@{row}">
+      <div th:class = "@{col-md-2}">
+        <button th:class = "@{btn btn-primary}" type="submit">Расчитать</button>
+      </div>
+    </div>
+  </form>
+</div>
+<div th:each = "city: ${city}">
+  <div th:text = "${city.name}"></div>
+  <div th:text = "${city.latitude}"></div>
+  <div th:text = "${city.longitude}"></div>
+</div>
+</body>
+</html>

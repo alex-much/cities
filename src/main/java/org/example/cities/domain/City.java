@@ -54,4 +54,10 @@ public class City {
     public void setLongitude(Float longitude) {
         this.longitude = longitude;
     }
+
+    @Override
+    public String toString() {
+
+        return name + " " + latitude + " " + longitude;
+    }
 }

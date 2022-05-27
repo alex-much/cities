@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 @Controller
-public class MainController {
+public class CityController {
     @Autowired
     private CityRepo cityRepo;
     @GetMapping("/greeting")
@@ -19,11 +21,11 @@ public class MainController {
         model.addAttribute("name", name);
         return "greeting";
     }
-    @GetMapping()
+    @GetMapping("/city")
     public String main(Model model) {
         Iterable<City> cities = cityRepo.findAll();
         model.addAttribute("cities", cities);
-        return "main";
+        return "city";
     }
     @PostMapping
     public String add(@RequestParam String name, @RequestParam Float latitude,
@@ -35,5 +37,19 @@ public class MainController {
         return "main";
     }
 
+    @PostMapping("/calc")
+    public String calc(@RequestParam(value = "fromCity", required = false) String fromCity,
+                       @RequestParam(value = "toCity", required = false) String toCity, Model model) {
+        List<City> city1 = cityRepo.findByName(fromCity);
+        Iterable<City> city2 = cityRepo.findByName(toCity);
+        String str = city1.toString();
+        String[] arr = str.split(" ");
+        System.out.println(city1.toString());
+
+        System.out.println(Float.parseFloat(arr[1]));
+        model.addAttribute("city", city1);
+        //model.addAttribute("city", city2);
+        return "calc";
+    }
 
   }
